@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    height:100vh;
+    width: 100vw;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-container {
+    height: 500px;
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sketchboard {
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 400px;
+    width: 400px;
+}
