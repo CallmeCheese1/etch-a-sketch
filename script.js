@@ -15,7 +15,20 @@ for (let i = 0; i < sketchboardUnits; i++) {
 
     sketchboardRow.className = "sketchboardRow"
     sketchboardRow.style.height = sketchboardHeight / sketchboardUnits + "px"
-    sketchboardRow.style.backgroundColor = "#" + randomColor;
+    sketchboardRow.style.display = "flex"
+
+    for (let i = 0; i < sketchboardUnits; i++) {
+        const sketchboardPixel = document.createElement('div');
+        let randomColor = Math.floor(Math.random()*16777215).toString(16);
+
+        sketchboardPixel.className = "sketchboardPixel"
+        sketchboardPixel.style.width = sketchboardWidth / sketchboardUnits + "px"
+        sketchboardPixel.style.height = sketchboardHeight / sketchboardUnits + "px"
+        sketchboardPixel.style.backgroundColor = "#" + randomColor
+
+        sketchboardRow.appendChild(sketchboardPixel);
+
+    }
 
     sketchboard.appendChild(sketchboardRow)
 
