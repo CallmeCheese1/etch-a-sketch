@@ -14,8 +14,28 @@ body {
     background-color: white;
     border-radius: 10px;
     display: flex;
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-bottom: 32px;
+    flex-basis: 600px;
+    flex-shrink: 1;
     flex-direction: column;
     align-items: center;
+}
+
+.interactives {
+    display: flex;
+    gap: 16px;
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+}
+
+.option-labels {
+    display: flex;
+    margin-bottom: 10px;
 }
 
 .sketchboard {
