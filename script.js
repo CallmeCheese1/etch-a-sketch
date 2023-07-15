@@ -2,19 +2,31 @@
 const sketchboard = document.querySelector(".sketchboard")
 const slider = document.querySelector("#myRange")
 const unitsLabel = document.querySelector("#unitsLabel")
+const resetButton = document.querySelector("#reset-button")
 sketchboardHeight = sketchboard.clientHeight;
 sketchboardWidth = sketchboard.clientWidth;
 let isMouseDown = false;
+let penMode = 'black';
 
 //define how many squares per side we need
 sketchboardUnits = 32
 
-//Run a for loop as many times as that number, with each creating a div that's the height of the sketchboard divided by the number of squares per side. After that, inside of the div, create a set number of divs with their width equal to the width of the sketchboard divided by the number of squares per side. 
+function draw(pixel) {
 
-function draw(e) {
-    if (e.type === 'mouseover' && !mouseDown) return
+    if (penMode === 'black') {
+        pixel.style.backgroundColor = 'black'
+        pixel.style.opacity = "1"
+    } else if (penMode === 'shading') {
+        pixel.style.backgroundColor = 'black'
+        pixel.style.opacity = parseFloat(pixel.style.opacity) + 0.1;
+    } else if (penMode === 'rainbow') {
+        pixel.style.opacity = "1"
+        let randomColor = Math.floor(Math.random()*16777215).toString(16);
+        console.log(randomColor)
+        pixel.style.backgroundColor = '#' + randomColor;
+    }
 
-    e.target.style.backgroundColor = 'black'
+    
 }
 
 function generateSketchboard() {
@@ -23,7 +35,6 @@ function generateSketchboard() {
     
     for (let i = 0; i < sketchboardUnits; i++) {
         const sketchboardRow = document.createElement('div');
-        let randomColor = Math.floor(Math.random()*16777215).toString(16);
     
         sketchboardRow.className = "sketchboardRow"
         sketchboardRow.style.height = sketchboardHeight / sketchboardUnits + "px"
@@ -36,15 +47,16 @@ function generateSketchboard() {
             sketchboardPixel.className = "sketchboardPixel"
             sketchboardPixel.style.width = sketchboardWidth / sketchboardUnits + "px"
             sketchboardPixel.style.height = sketchboardHeight / sketchboardUnits + "px"
+            sketchboardPixel.style.opacity = "0"
     
             sketchboardPixel.addEventListener('mouseover', () => {
                 if (isMouseDown) {
-                    sketchboardPixel.style.backgroundColor = 'black'
+                    draw(sketchboardPixel)
                 }
             })
             sketchboardPixel.addEventListener('mousedown', () => {
                 isMouseDown = true;
-                sketchboardPixel.style.backgroundColor = 'black'
+                draw(sketchboardPixel)
             })
             sketchboardPixel.addEventListener('mouseup', () => {
                 isMouseDown = false;
@@ -64,6 +76,19 @@ slider.oninput = function() {
     unitsLabel.innerHTML = "Squares per side: " + this.value;
     generateSketchboard()
 }
+
+resetButton.onclick = () => generateSketchboard();
+
+const penOptions = document.querySelectorAll('input[type="radio"][name="pen-options"')
+console.log(penOptions)
+penOptions.forEach(radioButton => {
+    radioButton.addEventListener('change', () => {
+        if (radioButton.checked) {
+            penMode = radioButton.value;
+            console.log(penMode);
+        }
+    })
+})
 
 
 generateSketchboard();

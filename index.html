@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Etch A Sketch!</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
@@ -17,6 +19,24 @@
                     <div class="slide-container">
                         <input type="range" min="1" max="100" value="32" class="slider" id="myRange">
                     </div>
+                </div>
+                
+                <div class="option" id="#pen-options">
+                    <label for="black-button">
+                        <input type="radio" name="pen-options" id="black-button" value="black" checked> Black
+                    </label>
+
+                    <label for="rainbow-button">
+                        <input type="radio" name="pen-options" id="rainbow-button" value="rainbow"> Rainbow
+                    </label>
+
+                    <label for="shading-button">
+                        <input type="radio" name="pen-options" id="shading-button" value="shading"> Shading
+                    </label>
+                </div>
+
+                <div class="option">
+                    <button id="reset-button">Reset</button>
                 </div>
             </div>
             <div class="sketchboard"></div>
